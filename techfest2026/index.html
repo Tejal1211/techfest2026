@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TECHFEST 2026 — Where Humans, AI and Innovation Converge. The world's most immersive technology festival." />
+  <meta name="keywords" content="techfest 2026, AI festival, technology conference, robotics, hackathon, innovation" />
+  <meta name="author" content="TECHFEST 2026" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="TECHFEST 2026 — Where Humans, AI and Innovation Converge" />
+  <meta property="og:description" content="The world's most immersive technology festival. AI, Robotics, Quantum Computing, Space Tech and more." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://techfest2026.io" />
+  <meta property="og:image" content="https://techfest2026.io/og-image.jpg" />
+  <title>TECHFEST 2026 — Where Humans, AI & Innovation Converge</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  CUSTOM CURSOR                              -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="cursor-outer" id="cursorOuter"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  PRELOADER                                  -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div id="preloader">
+    <div class="pre-grid"></div>
+    <div class="pre-content">
+      <div class="pre-logo">
+        <span class="pre-logo-tech">TECH</span><span class="pre-logo-fest">FEST</span>
+        <span class="pre-logo-year">2026</span>
+      </div>
+      <div class="pre-boot-lines" id="bootLines"></div>
+      <div class="pre-bar-wrap">
+        <div class="pre-bar" id="preBar"></div>
+        <div class="pre-bar-glow" id="preBarGlow"></div>
+      </div>
+      <div class="pre-percent" id="prePercent">0%</div>
+      <div class="pre-status" id="preStatus">INITIALIZING SYSTEMS...</div>
+    </div>
+    <canvas id="preCanvas"></canvas>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  NAVIGATION                                 -->
+  <!-- ═══════════════════════════════════════════ -->
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="TECHFEST 2026 Home">
+        <span class="logo-t">TECH</span><span class="logo-f">FEST</span><span class="logo-yr">2026</span>
+      </a>
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#highlights" class="nav-link">Events</a></li>
+        <li><a href="#speakers" class="nav-link">Speakers</a></li>
+        <li><a href="#timeline" class="nav-link">Timeline</a></li>
+        <li><a href="#domes" class="nav-link">Tech Domes</a></li>
+        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+      </ul>
+      <a href="#register" class="btn-nav magnetic" data-magnetic>Register</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul role="list">
+      <li><a href="#about" class="mob-link">About</a></li>
+      <li><a href="#highlights" class="mob-link">Events</a></li>
+      <li><a href="#speakers" class="mob-link">Speakers</a></li>
+      <li><a href="#timeline" class="mob-link">Timeline</a></li>
+      <li><a href="#domes" class="mob-link">Tech Domes</a></li>
+      <li><a href="#gallery" class="mob-link">Gallery</a></li>
+      <li><a href="#faq" class="mob-link">FAQ</a></li>
+      <li><a href="#register" class="mob-link mob-register">Register Now</a></li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  HERO SECTION                               -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="hero" class="section-hero" aria-label="Hero">
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-grid-overlay"></div>
+    <div class="hero-scanline"></div>
+    <div class="hero-content">
+      <div class="hero-tag">
+        <span class="tag-dot"></span>
+        <span>MARCH 15–18, 2026 · HYDERABAD, INDIA</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="hero-title-line" data-text="TECHFEST">TECHFEST</span>
+        <span class="hero-title-year" data-text="2026">2026</span>
+      </h1>
+      <p class="hero-subtitle">Where Humans, AI and Innovation Converge</p>
+      <div class="hero-btns">
+        <a href="#highlights" class="btn-primary magnetic" data-magnetic>
+          <span class="btn-inner">Explore Event</span>
+          <span class="btn-glow"></span>
+        </a>
+        <a href="#register" class="btn-secondary magnetic" data-magnetic>
+          <span class="btn-inner">Register Now</span>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num" data-count="120">0</span><span class="stat-plus">+</span><span class="stat-label">Speakers</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><span class="stat-num" data-count="50">0</span><span class="stat-plus">K</span><span class="stat-label">Attendees</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><span class="stat-num" data-count="6">0</span><span class="stat-plus"></span><span class="stat-label">Tech Domes</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><span class="stat-num" data-count="4">0</span><span class="stat-plus"></span><span class="stat-label">Days</span></div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  ABOUT SECTION                              -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="about" class="section-about" aria-label="About TECHFEST">
+    <canvas id="aboutCanvas"></canvas>
+    <div class="container">
+      <div class="section-label">
+        <span class="label-line"></span>
+        <span>ABOUT THE EVENT</span>
+        <span class="label-line"></span>
+      </div>
+      <div class="about-grid">
+        <div class="about-text" data-reveal>
+          <h2 class="section-title">The Future <br><em>Begins Here</em></h2>
+          <p class="about-desc">TECHFEST 2026 is the world's most immersive technology festival — a convergence of brilliant minds, breakthrough innovations, and transformative ideas that are reshaping civilization. Over four electrifying days, we bring together engineers, entrepreneurs, scientists, artists, and visionaries from across the globe.</p>
+          <p class="about-desc">Experience live demos of next-generation AI, interact with real robots, witness quantum breakthroughs, and step into augmented realities that were once only imaginable in science fiction.</p>
+          <div class="about-badges">
+            <span class="badge">🏆 World's Largest Tech Fest</span>
+            <span class="badge">🌐 60+ Countries</span>
+            <span class="badge">🤖 AI-Powered Experience</span>
+          </div>
+        </div>
+        <div class="about-visual" data-reveal>
+          <div class="about-card-wrap">
+            <div class="about-holo-card">
+              <div class="holo-inner">
+                <div class="holo-ring r1"></div>
+                <div class="holo-ring r2"></div>
+                <div class="holo-ring r3"></div>
+                <div class="holo-core">
+                  <span class="holo-icon">⬡</span>
+                  <span class="holo-text">TECHFEST</span>
+                  <span class="holo-year">2026</span>
+                </div>
+              </div>
+              <div class="holo-info">
+                <div class="holo-stat"><span class="hs-num">4</span><span class="hs-lbl">Days</span></div>
+                <div class="holo-stat"><span class="hs-num">50K</span><span class="hs-lbl">Visitors</span></div>
+                <div class="holo-stat"><span class="hs-num">120+</span><span class="hs-lbl">Speakers</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  EVENT HIGHLIGHTS                           -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="highlights" class="section-highlights" aria-label="Event Highlights">
+    <div class="container">
+      <div class="section-label">
+        <span class="label-line"></span>
+        <span>EVENT HIGHLIGHTS</span>
+        <span class="label-line"></span>
+      </div>
+      <h2 class="section-title center" data-reveal>6 Epic <em>Experiences</em></h2>
+      <div class="highlights-grid">
+        <!-- AI Zone -->
+        <article class="holo-card-event" data-index="0" data-reveal>
+          <div class="hce-glow"></div>
+          <div class="hce-icon">🧠</div>
+          <h3>AI Zone</h3>
+          <p>Explore the cutting edge of artificial intelligence — from large language models and generative AI to autonomous decision-making systems. Live demos, workshops, and challenges await.</p>
+          <div class="hce-footer">
+            <span class="hce-tag">Machine Learning</span>
+            <span class="hce-tag">GenAI</span>
+          </div>
+          <div class="hce-number">01</div>
+        </article>
+        <!-- Robotics Arena -->
+        <article class="holo-card-event" data-index="1" data-reveal>
+          <div class="hce-glow"></div>
+          <div class="hce-icon">🤖</div>
+          <h3>Robotics Arena</h3>
+          <p>Watch humanoid robots compete, assist, and astonish. From industrial automation to soft robotics and bio-inspired machines — the arena is humanity's next great theatre.</p>
+          <div class="hce-footer">
+            <span class="hce-tag">Humanoids</span>
+            <span class="hce-tag">Combat Bots</span>
+          </div>
+          <div class="hce-number">02</div>
+        </article>
+        <!-- Hackathon -->
+        <article class="holo-card-event" data-index="2" data-reveal>
+          <div class="hce-glow"></div>
+          <div class="hce-icon">⚡</div>
+          <h3>Hackathon</h3>
+          <p>48 hours. One mission. Build something that changes the world. With ₹2 Crore in prizes and mentorship from global tech leaders, this is where legends are made.</p>
+          <div class="hce-footer">
+            <span class="hce-tag">48hrs</span>
+            <span class="hce-tag">₹2Cr Prize</span>
+          </div>
+          <div class="hce-number">03</div>
+        </article>
+        <!-- Startup Expo -->
+        <article class="holo-card-event" data-index="3" data-reveal>
+          <div class="hce-glow"></div>
+          <div class="hce-icon">🚀</div>
+          <h3>Startup Expo</h3>
+          <p>Meet 500+ startups disrupting every industry. Connect with VCs, angel investors, and corporate partners. Pitch your ideas on the main stage to a panel of global innovators.</p>
+          <div class="hce-footer">
+            <span class="hce-tag">500+ Startups</span>
+            <span class="hce-tag">VC Connect</span>
+          </div>
+          <div class="hce-number">04</div>
+        </article>
+        <!-- Gaming Universe -->
+        <article class="holo-card-event" data-index="4" data-reveal>
+          <div class="hce-glow"></div>
+          <div class="hce-icon">🎮</div>
+          <h3>Gaming Universe</h3>
+          <p>India's largest esports tournament, next-gen VR arcades, AI-generated game worlds, and a glimpse into the future of interactive entertainment and the metaverse.</p>
+          <div class="hce-footer">
+            <span class="hce-tag">Esports</span>
+            <span class="hce-tag">Metaverse</span>
+          </div>
+          <div class="hce-number">05</div>
+        </article>
+        <!-- Space Tech -->
+        <article class="holo-card-event" data-index="5" data-reveal>
+          <div class="hce-glow"></div>
+          <div class="hce-icon">🛸</div>
+          <h3>Space Technology Pavilion</h3>
+          <p>From satellite deployment to Mars colonization plans — explore the final frontier with ISRO scientists, private space companies, and the engineers building humanity's off-world future.</p>
+          <div class="hce-footer">
+            <span class="hce-tag">ISRO</span>
+            <span class="hce-tag">Deep Space</span>
+          </div>
+          <div class="hce-number">06</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  SPEAKERS SECTION                           -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="speakers" class="section-speakers" aria-label="Speakers">
+    <div class="container">
+      <div class="section-label">
+        <span class="label-line"></span>
+        <span>VISIONARY SPEAKERS</span>
+        <span class="label-line"></span>
+      </div>
+      <h2 class="section-title center" data-reveal>Minds That <em>Shape Tomorrow</em></h2>
+      <div class="speakers-grid">
+
+        <article class="speaker-card" data-reveal>
+          <div class="sc-glow"></div>
+          <div class="sc-avatar">
+            <div class="sc-avatar-inner" style="background: linear-gradient(135deg, #0ff 0%, #07f 100%);">
+              <span>DR</span>
+            </div>
+            <div class="sc-ring"></div>
+          </div>
+          <div class="sc-info">
+            <h3>Dr. Anya Reeves</h3>
+            <p class="sc-role">Chief AI Scientist, DeepMind</p>
+            <p class="sc-topic">"The Consciousness Equation: What AI Will Become"</p>
+          </div>
+          <div class="sc-tags">
+            <span>AGI</span><span>Neural Nets</span>
+          </div>
+        </article>
+
+        <article class="speaker-card" data-reveal>
+          <div class="sc-glow"></div>
+          <div class="sc-avatar">
+            <div class="sc-avatar-inner" style="background: linear-gradient(135deg, #f0f 0%, #70f 100%);">
+              <span>KM</span>
+            </div>
+            <div class="sc-ring"></div>
+          </div>
+          <div class="sc-info">
+            <h3>Kaito Murakami</h3>
+            <p class="sc-role">CEO, Nexus Robotics</p>
+            <p class="sc-topic">"Humanoids Among Us: The Next Decade"</p>
+          </div>
+          <div class="sc-tags">
+            <span>Robotics</span><span>Automation</span>
+          </div>
+        </article>
+
+        <article class="speaker-card" data-reveal>
+          <div class="sc-glow"></div>
+          <div class="sc-avatar">
+            <div class="sc-avatar-inner" style="background: linear-gradient(135deg, #0f8 0%, #0ff 100%);">
+              <span>SA</span>
+            </div>
+            <div class="sc-ring"></div>
+          </div>
+          <div class="sc-info">
+            <h3>Shreya Acharya</h3>
+            <p class="sc-role">Director, ISRO Space Lab</p>
+            <p class="sc-topic">"Gaganyaan and Beyond: India's Space Century"</p>
+          </div>
+          <div class="sc-tags">
+            <span>Space Tech</span><span>ISRO</span>
+          </div>
+        </article>
+
+        <article class="speaker-card" data-reveal>
+          <div class="sc-glow"></div>
+          <div class="sc-avatar">
+            <div class="sc-avatar-inner" style="background: linear-gradient(135deg, #ff0 0%, #f80 100%);">
+              <span>LV</span>
+            </div>
+            <div class="sc-ring"></div>
+          </div>
+          <div class="sc-info">
+            <h3>Lena Vasquez</h3>
+            <p class="sc-role">Founder, QuantumLeap AI</p>
+            <p class="sc-topic">"Quantum Supremacy and What It Means for Encryption"</p>
+          </div>
+          <div class="sc-tags">
+            <span>Quantum</span><span>Cryptography</span>
+          </div>
+        </article>
+
+        <article class="speaker-card" data-reveal>
+          <div class="sc-glow"></div>
+          <div class="sc-avatar">
+            <div class="sc-avatar-inner" style="background: linear-gradient(135deg, #f06 0%, #f0f 100%);">
+              <span>RK</span>
+            </div>
+            <div class="sc-ring"></div>
+          </div>
+          <div class="sc-info">
+            <h3>Rajan Krishnan</h3>
+            <p class="sc-role">CTO, CyberShield Global</p>
+            <p class="sc-topic">"Defending the Digital World in the AI Age"</p>
+          </div>
+          <div class="sc-tags">
+            <span>CyberSec</span><span>Zero Trust</span>
+          </div>
+        </article>
+
+        <article class="speaker-card" data-reveal>
+          <div class="sc-glow"></div>
+          <div class="sc-avatar">
+            <div class="sc-avatar-inner" style="background: linear-gradient(135deg, #08f 0%, #0ff 100%);">
+              <span>ZW</span>
+            </div>
+            <div class="sc-ring"></div>
+          </div>
+          <div class="sc-info">
+            <h3>Zara Williams</h3>
+            <p class="sc-role">VP Engineering, Meta Reality Labs</p>
+            <p class="sc-topic">"The Spatial Web: AR/VR in 2030"</p>
+          </div>
+          <div class="sc-tags">
+            <span>AR/VR</span><span>Metaverse</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  TIMELINE SECTION                           -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="timeline" class="section-timeline" aria-label="Event Timeline">
+    <div class="container">
+      <div class="section-label">
+        <span class="label-line"></span>
+        <span>EVENT SCHEDULE</span>
+        <span class="label-line"></span>
+      </div>
+      <h2 class="section-title center" data-reveal>4-Day <em>Roadmap</em></h2>
+      <div class="timeline-track">
+        <div class="timeline-line"></div>
+        <div class="timeline-progress" id="timelineProgress"></div>
+
+        <div class="tl-item left" data-reveal>
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-date">DAY 01 · MAR 15</div>
+            <h3>Ignition</h3>
+            <ul>
+              <li>Grand Opening Ceremony</li>
+              <li>Keynote: The AI Revolution</li>
+              <li>Startup Expo Launch</li>
+              <li>Night: Welcome Gala</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item right" data-reveal>
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-date">DAY 02 · MAR 16</div>
+            <h3>Elevation</h3>
+            <ul>
+              <li>Hackathon Kickoff (48hr)</li>
+              <li>Robotics Arena Opens</li>
+              <li>Space Technology Talks</li>
+              <li>Panel: Future of Work</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item left" data-reveal>
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-date">DAY 03 · MAR 17</div>
+            <h3>Singularity</h3>
+            <ul>
+              <li>Quantum Computing Summit</li>
+              <li>Cybersecurity Challenges</li>
+              <li>Gaming Universe Finals</li>
+              <li>Hackathon Deadline</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item right" data-reveal>
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-date">DAY 04 · MAR 18</div>
+            <h3>Transcendence</h3>
+            <ul>
+              <li>Hackathon Awards Ceremony</li>
+              <li>Startup Pitching Finals</li>
+              <li>Closing Keynote</li>
+              <li>Futurist Night Spectacular</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  TECH DOMES SECTION                         -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="domes" class="section-domes" aria-label="Tech Domes">
+    <canvas id="domesCanvas"></canvas>
+    <div class="container">
+      <div class="section-label">
+        <span class="label-line"></span>
+        <span>TECH DOMES</span>
+        <span class="label-line"></span>
+      </div>
+      <h2 class="section-title center" data-reveal>6 Worlds of <em>Tomorrow</em></h2>
+      <div class="domes-grid">
+
+        <div class="dome-card" data-reveal data-color="#00ffff">
+          <div class="dome-orb">
+            <div class="dome-orb-inner">🧠</div>
+            <div class="dome-orbit o1"></div>
+            <div class="dome-orbit o2"></div>
+          </div>
+          <h3>Artificial Intelligence</h3>
+          <p>From foundation models to AGI research — explore the full spectrum of machine intelligence powering the future.</p>
+          <div class="dome-tags"><span>LLMs</span><span>Computer Vision</span><span>Robotics AI</span></div>
+        </div>
+
+        <div class="dome-card" data-reveal data-color="#b400ff">
+          <div class="dome-orb">
+            <div class="dome-orb-inner">🤖</div>
+            <div class="dome-orbit o1"></div>
+            <div class="dome-orbit o2"></div>
+          </div>
+          <h3>Robotics</h3>
+          <p>Humanoids, drones, surgical bots, and swarm intelligence — robotics is rewriting what machines can do for humanity.</p>
+          <div class="dome-tags"><span>Humanoids</span><span>Drones</span><span>Swarms</span></div>
+        </div>
+
+        <div class="dome-card" data-reveal data-color="#00ff88">
+          <div class="dome-orb">
+            <div class="dome-orb-inner">⚛️</div>
+            <div class="dome-orbit o1"></div>
+            <div class="dome-orbit o2"></div>
+          </div>
+          <h3>Quantum Computing</h3>
+          <p>Harnessing the laws of quantum mechanics to solve impossible problems — optimization, drug discovery, cryptography.</p>
+          <div class="dome-tags"><span>Qubits</span><span>Entanglement</span><span>QPU</span></div>
+        </div>
+
+        <div class="dome-card" data-reveal data-color="#ff0066">
+          <div class="dome-orb">
+            <div class="dome-orb-inner">🔐</div>
+            <div class="dome-orbit o1"></div>
+            <div class="dome-orbit o2"></div>
+          </div>
+          <h3>Cyber Security</h3>
+          <p>In an AI-powered threat landscape, defense must evolve at machine speed. Explore the frontlines of digital warfare.</p>
+          <div class="dome-tags"><span>Zero Trust</span><span>AI Threats</span><span>SIEM</span></div>
+        </div>
+
+        <div class="dome-card" data-reveal data-color="#ff8800">
+          <div class="dome-orb">
+            <div class="dome-orb-inner">🛸</div>
+            <div class="dome-orbit o1"></div>
+            <div class="dome-orbit o2"></div>
+          </div>
+          <h3>Space Technology</h3>
+          <p>From reusable launch vehicles to space stations and interplanetary colonization — humanity's destiny is among the stars.</p>
+          <div class="dome-tags"><span>Propulsion</span><span>Satellites</span><span>Mars</span></div>
+        </div>
+
+        <div class="dome-card" data-reveal data-color="#44aaff">
+          <div class="dome-orb">
+            <div class="dome-orb-inner">🥽</div>
+            <div class="dome-orbit o1"></div>
+            <div class="dome-orbit o2"></div>
+          </div>
+          <h3>AR / VR</h3>
+          <p>Spatial computing is dissolving the boundary between physical and digital. Step inside worlds that don't yet exist — or do they?</p>
+          <div class="dome-tags"><span>XR</span><span>Spatial</span><span>Metaverse</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  GALLERY SECTION                            -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="gallery" class="section-gallery" aria-label="Gallery">
+    <div class="container">
+      <div class="section-label">
+        <span class="label-line"></span>
+        <span>GALLERY</span>
+        <span class="label-line"></span>
+      </div>
+      <h2 class="section-title center" data-reveal>Glimpses of <em>Greatness</em></h2>
+      <div class="gallery-carousel" id="galleryCarousel">
+        <div class="gallery-track" id="galleryTrack">
+          <div class="gallery-item" style="--c1:#0ff;--c2:#07f;">
+            <div class="gi-inner">
+              <div class="gi-icon">🤖</div>
+              <div class="gi-label">Robotics Arena 2025</div>
+            </div>
+          </div>
+          <div class="gallery-item" style="--c1:#f0f;--c2:#70f;">
+            <div class="gi-inner">
+              <div class="gi-icon">🧠</div>
+              <div class="gi-label">AI Zone Showcase</div>
+            </div>
+          </div>
+          <div class="gallery-item" style="--c1:#0f8;--c2:#0ff;">
+            <div class="gi-inner">
+              <div class="gi-icon">🛸</div>
+              <div class="gi-label">Space Pavilion</div>
+            </div>
+          </div>
+          <div class="gallery-item" style="--c1:#ff0;--c2:#f80;">
+            <div class="gi-inner">
+              <div class="gi-icon">⚡</div>
+              <div class="gi-label">Hackathon Night</div>
+            </div>
+          </div>
+          <div class="gallery-item" style="--c1:#f06;--c2:#f0f;">
+            <div class="gi-inner">
+              <div class="gi-icon">🎮</div>
+              <div class="gi-label">Gaming Universe</div>
+            </div>
+          </div>
+          <div class="gallery-item" style="--c1:#0ff;--c2:#0f8;">
+            <div class="gi-inner">
+              <div class="gi-icon">🚀</div>
+              <div class="gi-label">Startup Pitch Finals</div>
+            </div>
+          </div>
+          <div class="gallery-item" style="--c1:#b4f;--c2:#f0f;">
+            <div class="gi-inner">
+              <div class="gi-icon">⚛️</div>
+              <div class="gi-label">Quantum Computing Lab</div>
+            </div>
+          </div>
+          <div class="gallery-item" style="--c1:#4af;--c2:#0ff;">
+            <div class="gi-inner">
+              <div class="gi-icon">🥽</div>
+              <div class="gi-label">VR Experience Zone</div>
+            </div>
+          </div>
+        </div>
+        <button class="gallery-btn prev" id="galleryPrev" aria-label="Previous">&#8592;</button>
+        <button class="gallery-btn next" id="galleryNext" aria-label="Next">&#8594;</button>
+      </div>
+      <div class="gallery-dots" id="galleryDots"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  FAQ SECTION                                -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="faq" class="section-faq" aria-label="FAQ">
+    <div class="container">
+      <div class="section-label">
+        <span class="label-line"></span>
+        <span>FREQUENTLY ASKED</span>
+        <span class="label-line"></span>
+      </div>
+      <h2 class="section-title center" data-reveal>Got <em>Questions?</em></h2>
+      <div class="faq-list">
+
+        <div class="faq-item" data-reveal>
+          <button class="faq-q" aria-expanded="false">
+            <span>When and where is TECHFEST 2026?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>TECHFEST 2026 takes place from March 15–18, 2026 at the Hyderabad International Convention Centre (HICC), Hyderabad, India — one of Asia's largest and most modern convention facilities.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <button class="faq-q" aria-expanded="false">
+            <span>How do I register for the event?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>Click the "Register Now" button at the top or bottom of this page. We offer Early Bird, Standard, VIP, and Corporate passes. All registrations include access to the main stages, expo halls, and digital content streams.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <button class="faq-q" aria-expanded="false">
+            <span>Can I participate in the Hackathon?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>Yes! The Hackathon is open to teams of 2–5 members. You must be registered for TECHFEST 2026 and submit your team registration separately via the Hackathon portal. ₹2 Crore in prizes await across 8 problem tracks.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <button class="faq-q" aria-expanded="false">
+            <span>Are there accommodation options?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>We have partnered with 15+ hotels within 5 km of the venue offering exclusive TECHFEST rates. Check the "Travel & Stay" section of your registration portal for booking links and discount codes.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <button class="faq-q" aria-expanded="false">
+            <span>Will sessions be live-streamed?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>Yes! All keynotes and major panel sessions will be live-streamed on the TECHFEST 2026 platform. A Digital Pass is available for those who cannot attend in person. Workshop recordings will be made available 72 hours after each session.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <button class="faq-q" aria-expanded="false">
+            <span>How can my startup exhibit at the Expo?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>Startup exhibition spots can be applied for via the Startup Expo portal. We evaluate startups based on innovation, stage, and sector. Selected startups receive exhibition space, access to our investor network, and a chance to pitch on the main stage.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  REGISTRATION CTA                           -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="register" class="section-register" aria-label="Registration">
+    <canvas id="regCanvas"></canvas>
+    <div class="container">
+      <div class="register-inner" data-reveal>
+        <div class="reg-tag">
+          <span class="tag-dot"></span>
+          <span>EARLY BIRD OFFER · SAVE 40%</span>
+        </div>
+        <h2 class="reg-title">Be Part of<br><em>History</em></h2>
+        <p class="reg-subtitle">Join 50,000+ technologists, entrepreneurs, and innovators at the world's most immersive tech festival. Limited seats available.</p>
+        <div class="reg-cards">
+          <div class="reg-card">
+            <div class="rc-badge">STANDARD</div>
+            <div class="rc-price">₹2,999<span>/person</span></div>
+            <ul>
+              <li>✓ All Main Stage Keynotes</li>
+              <li>✓ Expo Hall Access</li>
+              <li>✓ 2 Workshop Passes</li>
+              <li>✓ Digital Content</li>
+            </ul>
+            <a href="#" class="btn-secondary reg-btn">Get Ticket</a>
+          </div>
+          <div class="reg-card featured">
+            <div class="rc-badge">VIP ⭐</div>
+            <div class="rc-price">₹7,999<span>/person</span></div>
+            <ul>
+              <li>✓ Everything in Standard</li>
+              <li>✓ Speaker Meet &amp; Greet</li>
+              <li>✓ VIP Lounge Access</li>
+              <li>✓ All Workshops</li>
+              <li>✓ Networking Dinners</li>
+            </ul>
+            <a href="#" class="btn-primary reg-btn magnetic" data-magnetic>Get VIP Pass</a>
+          </div>
+          <div class="reg-card">
+            <div class="rc-badge">CORPORATE</div>
+            <div class="rc-price">₹49,999<span>/team</span></div>
+            <ul>
+              <li>✓ 10 VIP Passes</li>
+              <li>✓ Exhibition Booth</li>
+              <li>✓ Brand Visibility</li>
+              <li>✓ Investor Meetings</li>
+            </ul>
+            <a href="#" class="btn-secondary reg-btn">Contact Us</a>
+          </div>
+        </div>
+        <div class="reg-cta-wrap">
+          <a href="#" class="btn-primary btn-xl magnetic" data-magnetic>
+            <span class="btn-inner">Register for TECHFEST 2026</span>
+            <span class="btn-glow"></span>
+          </a>
+          <p class="reg-note">🔒 Secure payment · Instant confirmation · Refundable until Feb 1</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  FOOTER                                     -->
+  <!-- ═══════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-grid-bg"></div>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-t">TECH</span><span class="logo-f">FEST</span><span class="logo-yr">2026</span>
+          </div>
+          <p>Where Humans, AI and Innovation Converge.</p>
+          <p class="footer-addr">Hyderabad International Convention Centre<br>Hyderabad, Telangana 500081, India</p>
+        </div>
+        <div class="footer-links-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#highlights">Events</a></li>
+            <li><a href="#speakers">Speakers</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#domes">Tech Domes</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Press Kit</a></li>
+            <li><a href="#">Sponsorship</a></li>
+            <li><a href="#">Volunteer</a></li>
+            <li><a href="#">Hackathon</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-social-col">
+          <h4>Connect</h4>
+          <div class="footer-social">
+            <a href="#" class="social-btn" aria-label="Twitter/X">𝕏</a>
+            <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+            <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+            <a href="#" class="social-btn" aria-label="YouTube">▶</a>
+          </div>
+          <div class="footer-contact">
+            <p>📧 <a href="mailto:hello@techfest2026.io">hello@techfest2026.io</a></p>
+            <p>📞 <a href="tel:+914012345678">+91 40 1234 5678</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 TECHFEST 2026. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
