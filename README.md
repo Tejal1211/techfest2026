@@ -19,7 +19,7 @@ A futuristic 3D interactive Techfest website built using **Three.js**, **GSAP**,
 * Interactive Event Highlights
 * Registration Call-to-Action Section
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 * HTML5
 * CSS3
