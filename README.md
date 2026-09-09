@@ -42,7 +42,7 @@ techfest2026/
 │   └── models/
 │
 └── README.md
-```
+
 
 ## 🎯 Event Highlights
 
