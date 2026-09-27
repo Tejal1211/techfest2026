@@ -60,7 +60,7 @@ techfest2026/
 
 ```bash
 git clone https://github.com/Tejal1211/techfest2026.git
-```
+
 
 2. Open the project folder:
 
